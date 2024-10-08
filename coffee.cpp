@@ -39,27 +39,26 @@ int main() {
     double itemPrice;
     int orderId;
 
-    // Input item details
+  
     cout << "Enter the item name: ";
     getline(cin, itemName);
     cout << "Enter the item price: ";
     cin >> itemPrice;
     cin.ignore();
 
-    // Set item details
+   
     item.setDetails(itemName, itemPrice);
 
-    // Input order details
     cout << "Enter the order ID: ";
     cin >> orderId;
     cin.ignore();
     cout << "Enter customer preferences: ";
     getline(cin, customerPref);
 
-    // Set order details
+ 
     order1.setDetails(orderId, customerPref);
 
-    // Display the details
+ 
     item.showDetails();
     order1.showDetails();
 
