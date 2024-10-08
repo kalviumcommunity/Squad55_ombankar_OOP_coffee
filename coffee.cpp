@@ -5,37 +5,63 @@ class MenuItem {
 public:
     string name;
     double price;
+
+    void setDetails(string n, double price) {
+        this->name = name;
+        this->price = price;
+    }
+
+    void showDetails() {
+        cout << "Item: " << this->name << ", Price: $" << this->price << endl;
+    }
 };
 
 class Order {
 public:
     int orderId;
     string customerPreferences;
+
+    void setDetails(int orderId, string customerPreferences) {
+        this->orderId = orderId;
+        this->customerPreferences = customerPreferences;
+    }
+
+    void showDetails() {
+        cout << "Order ID: " << this->orderId << ", Preferences: " << this->customerPreferences << endl;
+    }
 };
 
 int main() {
     MenuItem item;
     Order order1;
 
-   
+    string itemName, customerPref;
+    double itemPrice;
+    int orderId;
+
+    // Input item details
     cout << "Enter the item name: ";
-    getline(cin, item.name);  
-
+    getline(cin, itemName);
     cout << "Enter the item price: ";
-    cin >> item.price;
-
+    cin >> itemPrice;
     cin.ignore();
 
+    // Set item details
+    item.setDetails(itemName, itemPrice);
+
+    // Input order details
     cout << "Enter the order ID: ";
-    cin >> order1.orderId;
-
+    cin >> orderId;
     cin.ignore();
-
     cout << "Enter customer preferences: ";
-    getline(cin, order1.customerPreferences);  
+    getline(cin, customerPref);
 
-    cout << "\nItem: " << item.name << ", Price: $" << item.price << endl;
-    cout << "Order ID: " << order1.orderId << ", Preferences: " << order1.customerPreferences << endl;
+    // Set order details
+    order1.setDetails(orderId, customerPref);
+
+    // Display the details
+    item.showDetails();
+    order1.showDetails();
 
     return 0;
 }
