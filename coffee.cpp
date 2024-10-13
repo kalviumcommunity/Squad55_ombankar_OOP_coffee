@@ -13,8 +13,8 @@ public:
         totalItems++;
     }
 
-    void showDetails() {
-        cout << "Item: " << this->name << ", Price: $" << this->price << endl;
+    void showDetails() const {
+        cout << "Item: " << name << ", Price: $" << price << endl;
     }
 
     static void showTotalItems() {
@@ -36,8 +36,8 @@ public:
         totalOrders++;
     }
 
-    void showDetails() {
-        cout << "Order ID: " << this->orderId << ", Preferences: " << this->customerPreferences << endl;
+    void showDetails() const {
+        cout << "Order ID: " << orderId << ", Preferences: " << customerPreferences << endl;
     }
 
     static void showTotalOrders() {
@@ -48,43 +48,27 @@ public:
 int Order::totalOrders = 0;
 
 int main() {
-    const int numItems = 1;
+    MenuItem menuItem;
+    Order order;
 
-    MenuItem* menuItems = new MenuItem[numItems];  
-    Order* order1 = new Order;  
-
-    string itemName, customerPref;
-    double itemPrice;
-    int orderId;
-
-    for (int i = 0; i < numItems; i++) {
-        cout << "Enter the item name: ";
-        getline(cin, itemName);
-        cout << "Enter the item price: ";
-        cin >> itemPrice;
-        cin.ignore();
-        menuItems[i].setDetails(itemName, itemPrice);
-    }
+    cout << "Enter the item name: ";
+    getline(cin, menuItem.name);
+    cout << "Enter the item price: ";
+    cin >> menuItem.price;
+    menuItem.setDetails(menuItem.name, menuItem.price);
 
     cout << "Enter the order ID: ";
-    cin >> orderId;
+    cin >> order.orderId;
     cin.ignore();
     cout << "Enter customer preferences: ";
-    getline(cin, customerPref);
-    
-    order1->setDetails(orderId, customerPref);
+    getline(cin, order.customerPreferences);
+    order.setDetails(order.orderId, order.customerPreferences);
 
-    for (int i = 0; i < numItems; i++) {
-        menuItems[i].showDetails();
-    }
-
-    order1->showDetails();
+    menuItem.showDetails();
+    order.showDetails();
 
     MenuItem::showTotalItems();
     Order::showTotalOrders();
-
-    delete[] menuItems;  
-    delete order1;  
 
     return 0;
 }
