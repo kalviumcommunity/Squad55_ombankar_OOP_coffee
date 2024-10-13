@@ -33,8 +33,9 @@ public:
 
 int main() {
     const int numItems = 1;
-    MenuItem menuItems[numItems];
-    Order order1;
+
+    MenuItem* menuItems = new MenuItem[numItems];  
+    Order* order1 = new Order;  
 
     string itemName, customerPref;
     double itemPrice;
@@ -55,13 +56,16 @@ int main() {
     cout << "Enter customer preferences: ";
     getline(cin, customerPref);
     
-    order1.setDetails(orderId, customerPref);
+    order1->setDetails(orderId, customerPref);
 
     for (int i = 0; i < numItems; i++) {
         menuItems[i].showDetails();
     }
 
-    order1.showDetails();
+    order1->showDetails();
+
+    delete[] menuItems;  
+    delete order1;  
 
     return 0;
 }
