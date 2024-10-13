@@ -6,7 +6,7 @@ public:
     string name;
     double price;
 
-    void setDetails(string n, double price) {
+    void setDetails(string name, double price) {
         this->name = name;
         this->price = price;
     }
@@ -32,33 +32,35 @@ public:
 };
 
 int main() {
-    MenuItem item;
+    const int numItems = 1;
+    MenuItem menuItems[numItems];
     Order order1;
 
     string itemName, customerPref;
     double itemPrice;
     int orderId;
 
-    cout << "Enter the item name: ";
-    getline(cin, itemName);
-    cout << "Enter the item price: ";
-    cin >> itemPrice;
-    cin.ignore();
+    for (int i = 0; i < numItems; i++) {
+        cout << "Enter the item name: ";
+        getline(cin, itemName);
+        cout << "Enter the item price: ";
+        cin >> itemPrice;
+        cin.ignore();
+        menuItems[i].setDetails(itemName, itemPrice);
+    }
 
-    
-    item.setDetails(itemName, itemPrice);
-
-   
     cout << "Enter the order ID: ";
     cin >> orderId;
     cin.ignore();
     cout << "Enter customer preferences: ";
     getline(cin, customerPref);
-
     
     order1.setDetails(orderId, customerPref);
 
-    item.showDetails();
+    for (int i = 0; i < numItems; i++) {
+        menuItems[i].showDetails();
+    }
+
     order1.showDetails();
 
     return 0;
