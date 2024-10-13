@@ -5,31 +5,47 @@ class MenuItem {
 public:
     string name;
     double price;
+    static int totalItems;
 
     void setDetails(string name, double price) {
         this->name = name;
         this->price = price;
+        totalItems++;
     }
 
     void showDetails() {
         cout << "Item: " << this->name << ", Price: $" << this->price << endl;
     }
+
+    static void showTotalItems() {
+        cout << "Total menu items: " << totalItems << endl;
+    }
 };
+
+int MenuItem::totalItems = 0;
 
 class Order {
 public:
     int orderId;
     string customerPreferences;
+    static int totalOrders;
 
     void setDetails(int orderId, string customerPreferences) {
         this->orderId = orderId;
         this->customerPreferences = customerPreferences;
+        totalOrders++;
     }
 
     void showDetails() {
         cout << "Order ID: " << this->orderId << ", Preferences: " << this->customerPreferences << endl;
     }
+
+    static void showTotalOrders() {
+        cout << "Total orders placed: " << totalOrders << endl;
+    }
 };
+
+int Order::totalOrders = 0;
 
 int main() {
     const int numItems = 1;
@@ -63,6 +79,9 @@ int main() {
     }
 
     order1->showDetails();
+
+    MenuItem::showTotalItems();
+    Order::showTotalOrders();
 
     delete[] menuItems;  
     delete order1;  
