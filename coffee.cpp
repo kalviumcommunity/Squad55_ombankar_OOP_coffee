@@ -2,14 +2,15 @@
 using namespace std;
 
 class MenuItem {
-public:
+private:
     string name;
     double price;
     static int totalItems;
 
-    void setDetails(string name, double price) {
-        this->name = name;
-        this->price = price;
+public:
+    void setDetails(string itemName, double itemPrice) {
+        name = itemName;
+        price = itemPrice;
         totalItems++;
     }
 
@@ -25,14 +26,15 @@ public:
 int MenuItem::totalItems = 0;
 
 class Order {
-public:
+private:
     int orderId;
     string customerPreferences;
     static int totalOrders;
 
-    void setDetails(int orderId, string customerPreferences) {
-        this->orderId = orderId;
-        this->customerPreferences = customerPreferences;
+public:
+    void setDetails(int id, string preferences) {
+        orderId = id;
+        customerPreferences = preferences;
         totalOrders++;
     }
 
@@ -51,18 +53,22 @@ int main() {
     MenuItem menuItem;
     Order order;
 
+    string itemName, preferences;
+    double itemPrice;
+    int orderId;
+
     cout << "Enter the item name: ";
-    getline(cin, menuItem.name);
+    getline(cin, itemName);
     cout << "Enter the item price: ";
-    cin >> menuItem.price;
-    menuItem.setDetails(menuItem.name, menuItem.price);
+    cin >> itemPrice;
+    menuItem.setDetails(itemName, itemPrice);
 
     cout << "Enter the order ID: ";
-    cin >> order.orderId;
+    cin >> orderId;
     cin.ignore();
     cout << "Enter customer preferences: ";
-    getline(cin, order.customerPreferences);
-    order.setDetails(order.orderId, order.customerPreferences);
+    getline(cin, preferences);
+    order.setDetails(orderId, preferences);
 
     menuItem.showDetails();
     order.showDetails();
