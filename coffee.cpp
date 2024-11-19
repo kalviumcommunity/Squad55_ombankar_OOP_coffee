@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 class MenuItem {
@@ -8,7 +9,7 @@ private:
     static int totalItems;
 
 public:
-    void setDetails(string itemName, double itemPrice) {
+    void setDetails(const string& itemName, double itemPrice) {
         name = itemName;
         price = itemPrice;
         totalItems++;
@@ -32,7 +33,7 @@ private:
     static int totalOrders;
 
 public:
-    void setDetails(int id, string preferences) {
+    void setDetails(int id, const string& preferences) {
         orderId = id;
         customerPreferences = preferences;
         totalOrders++;
