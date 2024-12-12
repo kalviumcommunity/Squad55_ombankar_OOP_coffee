@@ -14,9 +14,7 @@ public:
 
     virtual ~Item() {}
 
-    virtual void showDetails() const {
-        cout << "Item: " << name << ", Price: $" << price << endl;
-    }
+    virtual void showDetails() const = 0; 
 };
 
 class MenuItem : public Item {
@@ -47,6 +45,10 @@ public:
     void setDetails(const string& itemName, double itemPrice) {
         name = itemName;
         price = itemPrice;
+    }
+
+    void showDetails() const override {
+        cout << "Item: " << name << ", Price: $" << price << endl;
     }
 };
 
