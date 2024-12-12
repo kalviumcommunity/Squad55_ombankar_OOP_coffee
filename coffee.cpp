@@ -111,15 +111,30 @@ public:
     }
 };
 
+class DiscountedMenuItem : public MenuItem {
+private:
+    double discount;
+
+public:
+    DiscountedMenuItem(const string& itemName, double itemPrice, double discountRate) 
+        : MenuItem(itemName, itemPrice), discount(discountRate) {}
+
+    void showDetails() const override {
+        cout << "Item: " << name << ", Price: $" << price << ", Discount: " << discount << "%" << endl;
+    }
+};
+
 int main() {
     MenuItem menuItem("Pizza", 9.99);
     Order order(101, "Extra cheese");
+    DiscountedMenuItem discountedItem("Burger", 5.99, 10.0);
 
     MenuItemManager menuItemManager;
     OrderManager orderManager;
 
     menuItemManager.displayMenuItem(menuItem);
     orderManager.displayOrder(order);
+    menuItemManager.displayMenuItem(discountedItem);
 
     MenuItem::showTotalItems();
     Order::showTotalOrders();
