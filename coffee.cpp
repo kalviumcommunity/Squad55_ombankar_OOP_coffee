@@ -2,36 +2,39 @@
 #include <string>
 using namespace std;
 
-class MenuItem {
-private:
+class Item {
+protected:
     string name;
     double price;
+
+public:
+    Item() : name("Unknown"), price(0.0) {}
+
+    Item(const string& itemName, double itemPrice) : name(itemName), price(itemPrice) {}
+
+    virtual ~Item() {}
+
+    virtual void showDetails() const {
+        cout << "Item: " << name << ", Price: $" << price << endl;
+    }
+};
+
+class MenuItem : public Item {
+private:
     static int totalItems;
 
 public:
- 
-    MenuItem() : name("Unknown"), price(0.0) {
+    MenuItem() : Item() {
         totalItems++;
     }
 
-    
-    MenuItem(const string& itemName, double itemPrice) : name(itemName), price(itemPrice) {
+    MenuItem(const string& itemName, double itemPrice) : Item(itemName, itemPrice) {
         totalItems++;
     }
 
- 
     ~MenuItem() {
         totalItems--;
     }
-
-    void setDetails(const string& itemName, double itemPrice) {
-        name = itemName;
-        price = itemPrice;
-    }
-
-    void showDetails() const {
-        cout << "Item: " << name << ", Price: $" << price << endl;
-    }       
 
     static void showTotalItems() {
         cout << "Total menu items: " << totalItems << endl;
@@ -40,24 +43,21 @@ public:
 
 int MenuItem::totalItems = 0;
 
-class Order {
+class Order : public Item {
 private:
-    int orderId;  
+    int orderId;
     string customerPreferences;
     static int totalOrders;
 
 public:
-    
-    Order() : orderId(0), customerPreferences("None") {
+    Order() : Item(), orderId(0), customerPreferences("None") {
         totalOrders++;
     }
 
-   
-    Order(int id, const string& preferences) : orderId(id), customerPreferences(preferences) {
+    Order(int id, const string& preferences) : Item(), orderId(id), customerPreferences(preferences) {
         totalOrders++;
     }
 
-   
     ~Order() {
         totalOrders--;
     }
@@ -67,7 +67,7 @@ public:
         customerPreferences = preferences;
     }
 
-    void showDetails() const {
+    void showDetails() const override {
         cout << "Order ID: " << orderId << ", Preferences: " << customerPreferences << endl;
     }
 
@@ -79,7 +79,6 @@ public:
 int Order::totalOrders = 0;
 
 int main() {
-   
     MenuItem menuItem("Pizza", 9.99);
     Order order(101, "Extra cheese");
 
