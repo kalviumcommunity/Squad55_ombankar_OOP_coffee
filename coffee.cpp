@@ -1,4 +1,4 @@
-#include <iostream>   m
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -9,10 +9,24 @@ private:
     static int totalItems;
 
 public:
+ 
+    MenuItem() : name("Unknown"), price(0.0) {
+        totalItems++;
+    }
+
+    
+    MenuItem(const string& itemName, double itemPrice) : name(itemName), price(itemPrice) {
+        totalItems++;
+    }
+
+ 
+    ~MenuItem() {
+        totalItems--;
+    }
+
     void setDetails(const string& itemName, double itemPrice) {
         name = itemName;
         price = itemPrice;
-        totalItems++;
     }
 
     void showDetails() const {
@@ -33,10 +47,24 @@ private:
     static int totalOrders;
 
 public:
+    
+    Order() : orderId(0), customerPreferences("None") {
+        totalOrders++;
+    }
+
+   
+    Order(int id, const string& preferences) : orderId(id), customerPreferences(preferences) {
+        totalOrders++;
+    }
+
+   
+    ~Order() {
+        totalOrders--;
+    }
+
     void setDetails(int id, const string& preferences) {
         orderId = id;
         customerPreferences = preferences;
-        totalOrders++;
     }
 
     void showDetails() const {
@@ -51,25 +79,9 @@ public:
 int Order::totalOrders = 0;
 
 int main() {
-    MenuItem menuItem;
-    Order order;
-
-    string itemName, preferences;
-    double itemPrice;
-    int orderId;
-
-    cout << "Enter the item name: ";
-    getline(cin, itemName);
-    cout << "Enter the item price: ";
-    cin >> itemPrice;
-    menuItem.setDetails(itemName, itemPrice);
-
-    cout << "Enter the order ID: ";
-    cin >> orderId;
-    cin.ignore();
-    cout << "Enter customer preferences: ";
-    getline(cin, preferences);
-    order.setDetails(orderId, preferences);
+   
+    MenuItem menuItem("Pizza", 9.99);
+    Order order(101, "Extra cheese");
 
     menuItem.showDetails();
     order.showDetails();
