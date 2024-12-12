@@ -1,4 +1,4 @@
-#include <iostream>
+#include <iostream>   m
 #include <string>
 using namespace std;
 
@@ -17,7 +17,7 @@ public:
 
     void showDetails() const {
         cout << "Item: " << name << ", Price: $" << price << endl;
-    }
+    }       
 
     static void showTotalItems() {
         cout << "Total menu items: " << totalItems << endl;
@@ -28,7 +28,7 @@ int MenuItem::totalItems = 0;
 
 class Order {
 private:
-    int orderId;
+    int orderId;  
     string customerPreferences;
     static int totalOrders;
 
