@@ -95,8 +95,8 @@ public:
         menuItem.setDetails(itemName, itemPrice);
     }
 
-    void displayMenuItem(const MenuItem& menuItem) const {
-        menuItem.showDetails();
+    void displayMenuItem(const Item& item) const {
+        item.showDetails();
     }
 };
 
@@ -106,8 +106,8 @@ public:
         order.setDetails(orderId, preferences);
     }
 
-    void displayOrder(const Order& order) const {
-        order.showDetails();
+    void displayOrder(const Item& item) const {
+        item.showDetails();
     }
 };
 
