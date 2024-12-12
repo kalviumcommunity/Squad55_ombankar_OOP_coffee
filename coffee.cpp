@@ -89,12 +89,37 @@ public:
 
 int Order::totalOrders = 0;
 
+class MenuItemManager {
+public:
+    void addMenuItem(MenuItem& menuItem, const string& itemName, double itemPrice) {
+        menuItem.setDetails(itemName, itemPrice);
+    }
+
+    void displayMenuItem(const MenuItem& menuItem) const {
+        menuItem.showDetails();
+    }
+};
+
+class OrderManager {
+public:
+    void addOrder(Order& order, int orderId, const string& preferences) {
+        order.setDetails(orderId, preferences);
+    }
+
+    void displayOrder(const Order& order) const {
+        order.showDetails();
+    }
+};
+
 int main() {
     MenuItem menuItem("Pizza", 9.99);
     Order order(101, "Extra cheese");
 
-    menuItem.showDetails();
-    order.showDetails();
+    MenuItemManager menuItemManager;
+    OrderManager orderManager;
+
+    menuItemManager.displayMenuItem(menuItem);
+    orderManager.displayOrder(order);
 
     MenuItem::showTotalItems();
     Order::showTotalOrders();
