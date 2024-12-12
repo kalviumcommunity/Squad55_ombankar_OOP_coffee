@@ -39,6 +39,15 @@ public:
     static void showTotalItems() {
         cout << "Total menu items: " << totalItems << endl;
     }
+
+    void setDetails(const string& itemName) {
+        name = itemName;
+    }
+
+    void setDetails(const string& itemName, double itemPrice) {
+        name = itemName;
+        price = itemPrice;
+    }
 };
 
 int MenuItem::totalItems = 0;
